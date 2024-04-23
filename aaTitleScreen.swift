@@ -2,6 +2,7 @@ import SwiftUI
 
 struct aaTitleScreen: View {
     var body: some View {
+        NavigationStack{
         VStack {
             Group{
                 Text("Google Dino Game Renovated")
@@ -11,21 +12,31 @@ struct aaTitleScreen: View {
             .font(.system(size: 25))
             
             Spacer()
-            Button(action: {
-                print("I wanted the button to do something")
-            }, label: {
-                RoundedRectangle(cornerRadius: 25.0)
-                    .frame(maxWidth: 400, maxHeight: 100)
-                    .foregroundStyle(.black)
-                    .overlay(
-                Text("Start Game")
-                    .foregroundStyle(.white
-                                    )
-                )
-            })
+            
+                        VStack{
+                            RoundedRectangle(cornerRadius: 25.0)
+                                .frame(maxWidth: 400, maxHeight: 100)
+                                .foregroundStyle(.black)
+                                .overlay(
+                            NavigationLink("Start Game"){
+                                StatsPage()
+                                    .navigationBarBackButtonHidden(true)
+                            }
+                                .foregroundStyle(.white)
+                              
+                                )
+                                                
+                        }
             Spacer()
+                    }
+        
+            
+   
+            
             
             
         }
+        
+        
     }
 }
