@@ -7,12 +7,11 @@
 
 import SwiftUI
 
-struct EquipmentPage: View {
+struct StatsPage: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Stats")
+        
+        
     }
 }
 
-#Preview {
-    EquipmentPage()
-}
