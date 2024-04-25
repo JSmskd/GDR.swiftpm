@@ -13,6 +13,3 @@ struct PlayerPreview: View {
     }
 }
 
-#Preview {
-    PlayerPreview()
-}

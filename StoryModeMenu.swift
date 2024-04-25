@@ -13,6 +13,3 @@ struct StoryModeMenu: View {
     }
 }
 
-#Preview {
-    StoryModeMenu()
-}

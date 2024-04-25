@@ -10,9 +10,13 @@ import SwiftUI
 struct StorePage: View {
     var body: some View {
         Text("Store")
+        
+        MenuSelectionSubview()
+        
+        
+        
+        
+       
     }
 }
 
-#Preview {
-    StorePage()
-}

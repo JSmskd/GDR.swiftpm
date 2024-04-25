@@ -10,9 +10,9 @@ import SwiftUI
 struct QuestsPage: View {
     var body: some View {
         Text("Quests")
+        
+        
+        MenuSelectionSubview()
     }
 }
 
-#Preview {
-    QuestsPage()
-}

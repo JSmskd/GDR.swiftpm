@@ -10,9 +10,8 @@ import SwiftUI
 struct AchievmentsPage: View {
     var body: some View {
         Text("Achievments")
+       MenuSelectionSubview()
+       
     }
 }
 
-#Preview {
-    AchievmentsPage()
-}

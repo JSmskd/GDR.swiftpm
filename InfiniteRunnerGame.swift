@@ -13,6 +13,4 @@ struct InfiniteRunnerGame: View {
     }
 }
 
-#Preview {
-    InfiniteRunnerGame()
-}
+

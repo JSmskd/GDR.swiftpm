@@ -13,6 +13,3 @@ struct PausePage: View {
     }
 }
 
-#Preview {
-    PausePage()
-}

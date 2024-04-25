@@ -23,6 +23,4 @@ struct phys: View {
     }
 }
 
-#Preview {
-    phys()
-}
+
