@@ -37,9 +37,10 @@ class GameScene: SKScene{
     @State var right = false
     @State var momentum = CGFloat(0)
         //    let sprite = SKSpriteNode(imageNamed: "foo")
-    let foo = SKSpriteNode(imageNamed: "foo")
-    let foo2 = SKSpriteNode(imageNamed: "foo2")
+    let foo = SKSpriteNode(imageNamed: "Rock")
+    let foo2 = SKSpriteNode(imageNamed: "Dummy1")
     let ahh = SKSpriteNode(imageNamed: "ahh")
+    let data = SKSpriteNode(color: .red, size: CGSize(width: 20, height: 20))
     override func sceneDidLoad() {
         self.backgroundColor = .systemCyan
 
@@ -50,15 +51,16 @@ class GameScene: SKScene{
         foo.size = CGSize(width: 64, height: 64) //64/48
         foo2.size = CGSize(width: 64, height: 64) //64/48
         self.addChild(foo)
+        self.addChild(data)
         self.addChild(foo2)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.up = 1
+        self.data.position.y = 1
         print("\(up)")
         guard let touch = touches.first else {return}
         let location = touch.location(in: self)
-        foo.position.y = 360
-        self.down = false
+        //foo.position.y = 360
+        //data.position.y
             //self.$start.wrappedValue = true
             //self.start = true
             //self.st = location.x
@@ -67,7 +69,7 @@ class GameScene: SKScene{
 
     }
     override func touchesEnded (_ touches: Set<UITouch>, with event: UIEvent?) {
-        up = -1
+        self.data.position.y = 0
             //touchesBegan(touches, with: event)
         guard let touch = touches.first else {return}
         let location = touch.location(in: self)
@@ -77,10 +79,18 @@ class GameScene: SKScene{
         print(foo.position.x)
     }
     override func update(_ currentTime: TimeInterval) {
-        if up > 0 {
+        if Int(data.position.y) % 2 == 0 {
             up = Int(floor(Double(up) * 1.2))
             foo.position.y += CGFloat(floor(Double(up) * Double(foo.position.y)))
-        }
+            
+        } else{
+                
+                data.position.y = foo.position.y > 360 ? 0 : 1
+            if Int(data.position.y) % 2 == 1 {
+                foo.position.y += 10
+            }
+            }
+        
             //print(up)
 
             //-(yy-1)
