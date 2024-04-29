@@ -9,9 +9,16 @@ import SwiftUI
 
 struct SettingsPage: View {
     var body: some View {
-        Text("Settings")
-        
-        MenuSelectionSubview()
+        HStack{
+            MenuSelectionSubview()
+            
+            VStack{
+                Text("Settings")
+            }
+            
+            
+            
+        }
     }
 }
 

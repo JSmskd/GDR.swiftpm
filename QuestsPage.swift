@@ -9,10 +9,22 @@ import SwiftUI
 
 struct QuestsPage: View {
     var body: some View {
-        Text("Quests")
-        
-        
-        MenuSelectionSubview()
+        HStack{
+            MenuSelectionSubview()
+            
+            VStack{
+                
+                
+                Text("Quests")
+                MoneySubview()
+            }
+            
+            
+            
+            
+            
+            
+        }
     }
 }
 

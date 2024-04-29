@@ -9,8 +9,16 @@ import SwiftUI
 
 struct AchievmentsPage: View {
     var body: some View {
-        Text("Achievments")
-       MenuSelectionSubview()
+        HStack{
+            
+            MenuSelectionSubview()
+            VStack{
+                Text("Achievments")
+                
+            }
+        }
+        
+       
        
     }
 }

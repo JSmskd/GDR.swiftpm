@@ -10,11 +10,23 @@ import SwiftUI
 struct StatsPage: View {
     var body: some View {
         HStack{
+            MenuSelectionSubview()
+            
+            VStack{
+                
+                
+                Text("Stats")
+                MoneySubview()
+            }
             
             
-            Text("Stats")
+            
+            
+            
+            
         }
-        MenuSelectionSubview()
+        
+        
        
        
     }
