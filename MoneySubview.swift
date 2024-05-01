@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct MoneySubview: View {
-    @State var francGold =  50.00
-    @State var francMeteor = 10.00
+    @Binding var money: MoneyClass
+//    @State var gold =  50.00
+//    @State var meteor = 10.00
     
     var body: some View {
         
         HStack{
-            Text("Gold = \(francGold, specifier: "%.0f")")
-            Text("Meteors = \(francMeteor, specifier: "%.0f")")
+            Text("Gold = \(money.gold, specifier: "%.0f")")
+            Text("Meteors = \(money.meteor, specifier: "%.0f")")
             
             
         }

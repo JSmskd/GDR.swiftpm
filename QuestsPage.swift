@@ -8,16 +8,29 @@
 import SwiftUI
 
 struct QuestsPage: View {
+    @Binding var money: MoneyClass
     var body: some View {
         HStack{
-            MenuSelectionSubview()
-            
+            MenuSelectionSubview(money: $money)
+            Spacer()
             VStack{
                 
                 
                 Text("Quests")
-                MoneySubview()
+                MoneySubview(money: $money)
+                
+                Button(action:
+                        {
+                    money.gold += 3
+                    money.meteor += 1
+                    
+                          }, label: {
+                              Text("Money tester (+3 gold, +1 meteor)")
+                                  .frame(maxWidth: 300, alignment: .leading)
+                              
+                          })
             }
+            Spacer()
             
             
             

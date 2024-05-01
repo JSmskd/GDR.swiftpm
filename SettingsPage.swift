@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct SettingsPage: View {
+    @Binding var money: MoneyClass
     var body: some View {
         HStack{
-            MenuSelectionSubview()
-            
+            MenuSelectionSubview(money: $money)
+            Spacer()
             VStack{
                 Text("Settings")
             }
