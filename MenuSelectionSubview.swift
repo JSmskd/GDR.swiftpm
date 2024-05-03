@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct MenuSelectionSubview: View {
+    @Binding var money: MoneyClass
     var body: some View {
         
         ////////////////////////////////////////////////////////////////////////////----> Side Menu Code
+        Rectangle()
+            .frame(maxWidth: 225, maxHeight: .infinity)
+        .foregroundStyle(.brown)
+        .overlay(
         NavigationStack{
             VStack{
+                
                 ////////////////////////////////////////////////////////////
                 RoundedRectangle(cornerRadius: 25.0)
-                    .frame(maxWidth: 400, maxHeight: 100)
+                    .frame(maxWidth: 200, maxHeight: 50)
                     .foregroundStyle(.black)
                     .overlay(
                 NavigationLink("Play"){
@@ -25,51 +31,51 @@ struct MenuSelectionSubview: View {
                     .foregroundStyle(.white))
                 ////////////////////////////////////////////////////////////
                 RoundedRectangle(cornerRadius: 25.0)
-                    .frame(maxWidth: 400, maxHeight: 100)
+                    .frame(maxWidth: 200, maxHeight: 50)
                     .foregroundStyle(.black)
                     .overlay(
                 NavigationLink("Stats"){
-                    StatsPage()
+                    StatsPage(money: $money)
                         .navigationBarBackButtonHidden(true)
                 }
                     .foregroundStyle(.white))
                 ////////////////////////////////////////////////////////////
                 RoundedRectangle(cornerRadius: 25.0)
-                    .frame(maxWidth: 400, maxHeight: 100)
+                    .frame(maxWidth: 200, maxHeight: 50)
                     .foregroundStyle(.black)
                     .overlay(
                 NavigationLink("Quests"){
-                    QuestsPage()
+                    QuestsPage(money: $money)
                         .navigationBarBackButtonHidden(true)
                 }
                     .foregroundStyle(.white))
                 ////////////////////////////////////////////////////////////
                 RoundedRectangle(cornerRadius: 25.0)
-                    .frame(maxWidth: 400, maxHeight: 100)
+                    .frame(maxWidth: 200, maxHeight: 50)
                     .foregroundStyle(.black)
                     .overlay(
                 NavigationLink("Store"){
-                    StorePage()
+                    StorePage(money: $money)
                         .navigationBarBackButtonHidden(true)
                 }
                     .foregroundStyle(.white))
                 ////////////////////////////////////////////////////////////
                 RoundedRectangle(cornerRadius: 25.0)
-                    .frame(maxWidth: 400, maxHeight: 100)
+                    .frame(maxWidth: 200, maxHeight: 50)
                     .foregroundStyle(.black)
                     .overlay(
                 NavigationLink("Achievments"){
-                    AchievmentsPage()
+                    AchievmentsPage(money: $money)
                         .navigationBarBackButtonHidden(true)
                 }
                     .foregroundStyle(.white))
                 ////////////////////////////////////////////////////////////
                 RoundedRectangle(cornerRadius: 25.0)
-                    .frame(maxWidth: 400, maxHeight: 100)
+                    .frame(maxWidth: 200, maxHeight: 50)
                     .foregroundStyle(.black)
                     .overlay(
                 NavigationLink("Settings"){
-                    SettingsPage()
+                    SettingsPage(money: $money)
                         .navigationBarBackButtonHidden(true)
                 }
                     .foregroundStyle(.white))
@@ -77,7 +83,10 @@ struct MenuSelectionSubview: View {
             }
         }
         ////////////////////////////////////////////////////////////////////////////----> Side Menu Code
+        )
     }
+        
+        
 }
 
 
