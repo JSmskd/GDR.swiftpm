@@ -20,15 +20,15 @@ struct QuestsPage: View {
                 MoneySubview(money: $money)
                 
                 Button(action:
-                        {
-                    money.gold += 3
-                    money.meteor += 1
-                    
-                          }, label: {
-                              Text("Money tester (+3 gold, +1 meteor)")
-                                  .frame(maxWidth: 300, alignment: .leading)
-                              
-                          })
+                                        {
+                                    money.gold += 75
+                                    money.meteor += 50
+                                    
+                                          }, label: {
+                                              Text("Money tester (+75 gold, +50 meteor)")
+                                                  .frame(maxWidth: 300, alignment: .leading)
+                                              
+                                          })
             }
             Spacer()
             

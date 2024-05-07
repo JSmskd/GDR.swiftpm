@@ -30,33 +30,23 @@ struct StatsPage: View {
                         Text("|")
                         Text("|")
                         Text("|")
-                        Text("|")
-                        Text("|")
+                        
                         
                     }
                     VStack{
                         Text("\(money.gold, specifier: "%.0f")")
                         Text("\(money.meteor, specifier: "%.0f")")
                         Text("\(money.jumpHeight, specifier: "%.0f")")
-                        Text("\(money.jetpack)")
+                        Text("\(String(money.jetpack))")
                         
                     }
                     
                 }
-
+                
             }
             Spacer()
             
-            
-            
-            
-            
-            
         }
-        
-        
-       
-       
     }
 }
 

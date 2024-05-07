@@ -9,8 +9,7 @@ import SwiftUI
 
 struct MoneySubview: View {
     @Binding var money: MoneyClass
-//    @State var gold =  50.00
-//    @State var meteor = 10.00
+
     
     var body: some View {
         
