@@ -30,6 +30,12 @@ struct StatsPage: View {
                         Text("|")
                         Text("|")
                         Text("|")
+                        Text("|")
+                        
+                                    
+                                        
+                                    
+                                }
                         
                         
                     }
@@ -48,5 +54,5 @@ struct StatsPage: View {
             
         }
     }
-}
+
 

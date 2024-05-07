@@ -8,6 +8,14 @@
 import SwiftUI
 
 struct StorePage: View {
+    /// Alerts
+    @State var noMoneyAlertGold = false
+    @State var noMoneyAlertMeteor = false
+    @State var noMoneyAlertStock = false
+    @State var commonPurchase = false
+    @State var epicPurchase = false
+    
+    ///
     @Binding var money: MoneyClass
     var body: some View {
         Text("Store")
@@ -21,9 +29,10 @@ struct StorePage: View {
                             if money.gold >= money.priceJump {
                                 money.gold -= 50
                                 money.jumpHeight += 1
-                                money.priceJump *= 1.05
+                                money.priceJump *= 1.35
+                                commonPurchase = true
                             }else{
-                                print("come back when your a little RICHER")
+                                noMoneyAlertGold = true
                             }
                                   }, label: {
                                       Rectangle()
@@ -34,20 +43,25 @@ struct StorePage: View {
                                                 .frame(maxWidth: 300, alignment: .center)
                                           )
                                   })
+                        
+                                                
+                        
+                        
                         Button(action:
                                 {
                             
                             if money.priceJetpackSoldout == "Sold Out!" {
-                                print("jetpack is Sold Out!")
+                                noMoneyAlertStock = true
                                 
                             }else if money.meteor >= money.priceJetpack {
                                 money.meteor -= 500
                                 money.jetpack = true
                                 money.priceJetpack = 9999999
                                 money.priceJetpackSoldout = "Sold Out!"
+                                epicPurchase = true
                             }else{
-                                print("no money?")
-                            }
+
+                                noMoneyAlertMeteor = true                       }
                             
                                   }, label: {
                                       Rectangle()
@@ -59,9 +73,22 @@ struct StorePage: View {
                                           )
                                   })
                         
+                                    
+                                
                         
                         
+
             }
+                    .alert("You Don't Have Enough Gold!", isPresented: $noMoneyAlertGold){
+                        Button("Thats Crazy!", role: .cancel){}}
+                    .alert("You Unlocked A Common Upgrade!", isPresented: $commonPurchase){
+                        Button("Thats Crazy!", role: .cancel){}}
+                    .alert("You Don't Have Enough Meteors!", isPresented: $noMoneyAlertMeteor){
+                        Button("Thats Crazy!", role: .cancel){}}
+                    .alert("There Isn't Any Stock Left!", isPresented: $noMoneyAlertStock){
+                        Button("Thats Crazy!", role: .cancel){}}
+                    .alert("You Unlocked A Epic Upgrade!", isPresented: $epicPurchase){
+                        Button("Thats Crazy!", role: .cancel){}}
             
             
             Spacer()

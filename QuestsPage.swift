@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct QuestsPage: View {
+    
+    @State var questCompleteAlert = false
+  
     @Binding var money: MoneyClass
     var body: some View {
         HStack{
@@ -16,24 +19,28 @@ struct QuestsPage: View {
             VStack{
                 
                 
+                
                 Text("Quests")
                 MoneySubview(money: $money)
                 
                 Button(action:
                                         {
-                                    money.gold += 75
-                                    money.meteor += 50
-                                    
+                                    money.gold += 500
+                                    money.meteor += 250
+                                    questCompleteAlert = true
                                           }, label: {
-                                              Text("Money tester (+75 gold, +50 meteor)")
+                                              Text("Money tester (+500 gold, +250 meteor)")
                                                   .frame(maxWidth: 300, alignment: .leading)
-                                              
                                           })
+                
+                
             }
+            .alert("You Completed A Quest!", isPresented: $questCompleteAlert){
+                Button("Thats Crazy!", role: .cancel){}}
             Spacer()
             
             
-            
+                
             
             
             

@@ -9,7 +9,7 @@ struct aaTitleScreen: View {
             Group{
                 Text("Google Dino Game Renovated")
                     .font(.custom("Zapfino", size: 15))
-                Text("Version - 0.02")
+                Text("Version - 0.023")
             }
             .font(.system(size: 25))
             
