@@ -19,7 +19,7 @@ let package = Package(
             bundleIdentifier: "org.jhhs.627366.GDR",
             displayVersion: "1.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .smiley),
+            appIcon: .asset("AppIcon"),
             accentColor: .presetColor(.blue),
             supportedDeviceFamilies: [
                 .pad,
