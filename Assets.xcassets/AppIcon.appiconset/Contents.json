@@ -1,0 +1,14 @@
+{
+  "images" : [
+    {
+      "filename" : "IMG_0120.jpg",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    }
+  ],
+  "info" : {
+    "author" : "John",
+    "version" : 1
+  }
+}
