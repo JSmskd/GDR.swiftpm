@@ -208,6 +208,7 @@ var    out:[Bool]=[]
             y /= 2
             x += 1
         }
+        return [false]
     }
     func understant(_ data:[Bool]){
         //print("\()\()\()\()")
