@@ -17,7 +17,7 @@ struct MoneySubview: View {
             Text("Gold = \(money.gold, specifier: "%.0f")")
             Text("Meteors = \(money.meteor, specifier: "%.0f")")
             
-            
+            /// for some reason subviews dont update when everything else does so womp womp
         }
         
     }

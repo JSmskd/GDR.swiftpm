@@ -19,7 +19,10 @@ struct StorePage: View {
     @Binding var money: MoneyClass
     var body: some View {
         Text("Store")
-        MoneySubview(money: $money)
+        HStack{
+            Text("Gold = \(money.gold, specifier: "%.0f")")
+            Text("Meteors = \(money.meteor, specifier: "%.0f")") 
+        }
         HStack{
                     MenuSelectionSubview(money: $money)
                     Spacer()
@@ -27,7 +30,7 @@ struct StorePage: View {
                         Button(action:
                                 {
                             if money.gold >= money.priceJump {
-                                money.gold -= 50
+                                money.gold -= money.priceJump
                                 money.jumpHeight += 1
                                 money.priceJump *= 1.35
                                 commonPurchase = true
