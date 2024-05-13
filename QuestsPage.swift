@@ -34,7 +34,7 @@ struct QuestsPage: View {
                                     money.meteor += 250
                                     questCompleteAlert = true
                                     money.jumpOverCactusQuest -= 3
-                                    money.jumpOverCactusTotal += 3
+//                                    money.jumpOverCactusTotal += 3
                                           }, label: {
                                               Text("Money tester (+500 gold, +250 meteor) also 3 jump")
                                                   .frame(maxWidth: 300, alignment: .leading)
@@ -44,10 +44,10 @@ struct QuestsPage: View {
                                         {
                     if money.jumpOverCactusQuest <= 0{
                         money.gold += money.cactusQuestReward
+                        money.achievments["Total Gold Obtained"]? += money.cactusQuestReward
                         money.cactusQuestReward *= 1.1
                         money.jumpOverCactusQuestProgression *= 1.1
                         money.jumpOverCactusQuest = money.jumpOverCactusQuestProgression
-                        money.completedQuestsTotal += 1
                         questCompleteAlert = true
                     }else{
                         
@@ -74,6 +74,7 @@ struct QuestsPage: View {
                     if money.defeatMonsterQuest <= 0{
                         money.gold += 50000
                         money.meteor += 25000
+                        money.achievments["Total Meteor Obtained"]? += 2500
                         money.defeatMonsterQuest = 3
                         questCompleteAlert = true
                     }else{

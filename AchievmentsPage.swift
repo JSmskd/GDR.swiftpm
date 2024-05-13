@@ -10,6 +10,7 @@ import SwiftUI
 struct AchievmentsPage: View {
     @Binding var money: MoneyClass
     var body: some View {
+        
         HStack{
             
             MenuSelectionSubview(money: $money)
@@ -21,24 +22,22 @@ struct AchievmentsPage: View {
                     
                     ///////////////////////////////////////////////////////////////////// Achievment Titles
                     VStack{
-                        Text("Total Cactus Jumped Over")
-                        Text("Total Gold Collected")
-                        Text("Total Meteors Collected")
-                        Text("Total Completed Quests")
+                        ForEach(Array(money.achievments), id:\.key){ key, value in
+                            Text("\(key)")
+                        }
                     }
                     ////////////////////////////////////////////////////////////////////// Divider
                     VStack{
-                        Text("|")
-                        Text("|")
-                        Text("|")
-                        Text("|")
+                        ForEach(Array(money.achievments), id:\.key){ key, value in
+                            Text("|")
+                        }
                     }
                     ////////////////////////////////////////////////////////////////////// Achievment Trackers
                     VStack{
-                        Text("\(money.jumpOverCactusTotal, specifier: "%.0f")")
-                        Text("\(money.goldTotal, specifier: "%.0f")")
-                        Text("\(money.meteorTotal, specifier: "%.0f")")
-                        Text("\(money.completedQuestsTotal, specifier: "%.0f")")
+                        ForEach(Array(money.achievments), id:\.key){ key, value in
+                            Text("\(value, specifier: "%.0f")")
+                        }
+                        
                         
                     }}
             }

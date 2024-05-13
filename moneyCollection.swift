@@ -12,9 +12,13 @@ class MoneyClass{
     var gold: Double
     var meteor: Double
     //PlayerStats
+    var maxHealth: Double
+    var maxMana: Double
     var jumpHeight: Double
     var jetpack: Bool
-    var maxHealth: Double
+    var pointMultiplier: Double
+    var goldMultiplier: Double
+    var meteorBonus: Double
     //StorePrices
     var priceJump: Double
     var priceJetpack: Double
@@ -23,29 +27,25 @@ class MoneyClass{
     var jumpOverCactusQuest: Double
     var jumpOverCactusQuestProgression: Double
     var defeatMonsterQuest: Double
-    //QuestRewards
+    //QuestReward
     var cactusQuestReward: Double
     var defeatMonsterQuestReward: Double
     //Achievments
-    var completedQuestsTotal: Double
-    var goldTotal: Double
-    var goldSpentTotal: Double
-    var meteorTotal: Double
-    var meteorSpentTotal: Double
-    var jumpOverCactusTotal: Double
-    var defeatMonstersTotal: Double
-    
-    
-    
-    
+    var achievments: [String: Double]
+
+
     init() {
         //Currencies
         gold = 50.00
         meteor = 5.00
         //PlayerStats
+        maxHealth = 1
+        maxMana = 100
         jumpHeight = 10.00
         jetpack = false
-        maxHealth = 1
+        pointMultiplier = 1
+        goldMultiplier = 1
+        meteorBonus = 0
         //StorePrices
         priceJump = 55.00
         priceJetpack = 500
@@ -58,16 +58,12 @@ class MoneyClass{
         cactusQuestReward = 30
         defeatMonsterQuestReward = 1
         //Achievments
-        completedQuestsTotal = 0
-        goldTotal = 50
-        goldSpentTotal = 0
-        meteorTotal = 5
-        meteorSpentTotal = 0
-        jumpOverCactusTotal = 0
-        defeatMonstersTotal = 0
+        achievments = ["Completed Quests":0, "Total Gold Obtained":50, "Total Gold Spent":0, "Total Meteor Obtained":5, "Total Meteor Spent":0, "Cactus Jumped Over":0, "Monsters Defeated":0]
         
         
+
     }
 }
+//        achievments["Total Gold Obtained"]? += 1
 
 

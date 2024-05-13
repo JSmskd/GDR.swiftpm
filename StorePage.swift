@@ -31,6 +31,7 @@ struct StorePage: View {
                                 {
                             if money.gold >= money.priceJump {
                                 money.gold -= money.priceJump
+                                money.achievments["Total Gold Spent"]? += money.priceJump
                                 money.jumpHeight += 1
                                 money.priceJump *= 1.35
                                 commonPurchase = true
@@ -58,6 +59,7 @@ struct StorePage: View {
                                 
                             }else if money.meteor >= money.priceJetpack {
                                 money.meteor -= 500
+                                money.achievments["Total Meteor Spent"]? += 500
                                 money.jetpack = true
                                 money.priceJetpack = 9999999
                                 money.priceJetpackSoldout = "Sold Out!"
