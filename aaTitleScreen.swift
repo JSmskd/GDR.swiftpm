@@ -7,7 +7,7 @@ struct aaTitleScreen: View {
         NavigationStack{
         VStack {
             Group{
-                Text("Google Dino Game Renovated")
+                Text("JURRASSIC RUN")
                     .font(.custom("Zapfino", size: 15))
                 Text("Version - 0.023")
             }

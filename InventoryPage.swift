@@ -8,11 +8,38 @@
 import SwiftUI
 
 struct InventoryPage: View {
+    @Binding var money: MoneyClass
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            MenuSelectionSubview(money: $money)
+            
+            Spacer()
+            VStack{
+                ForEach(money.inventory, id:\.self){value in
+                    Button(action: {
+                        money.playerWeapon = value
+                    }, label: {
+                        Rectangle()
+                            .frame(maxWidth: 100, maxHeight: 100)
+                            .overlay(
+                                Text("\(value)")
+                            )
+                    })}
+                    
+                    
+                    
+                    
+                    
+                    
+             
+                
+                
+                
+            }
+            
+            
+            Spacer()
+        }
     }
 }
 
-#Preview {
-    InventoryPage()
-}

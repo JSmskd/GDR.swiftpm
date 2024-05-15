@@ -16,9 +16,16 @@ class MoneyClass{
     var maxMana: Double
     var jumpHeight: Double
     var jetpack: Bool
+    var kevinKishore: Bool
     var pointMultiplier: Double
     var goldMultiplier: Double
     var meteorBonus: Double
+    //PlayerItems
+    var playerWeapon: String
+    var playerArmor: String
+    var playerTrinket: String
+    //PlayerInventory
+    var inventory: [String]
     //StorePrices
     var priceJump: Double
     var priceJetpack: Double
@@ -43,9 +50,16 @@ class MoneyClass{
         maxMana = 100
         jumpHeight = 10.00
         jetpack = false
+        kevinKishore = false
         pointMultiplier = 1
         goldMultiplier = 1
         meteorBonus = 0
+        //PlayerItems
+        playerWeapon = "None"
+        playerArmor = "None"
+        playerTrinket = "None"
+        //PlayerInventory
+        inventory = [""]
         //StorePrices
         priceJump = 55.00
         priceJetpack = 500
