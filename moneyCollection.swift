@@ -26,6 +26,8 @@ class MoneyClass{
     var playerTrinket: String
     //PlayerInventory
     var inventory: [String]
+    var inventoryArmor: [String]
+    var inventoryTrinket: [String]
     //StorePrices
     var priceJump: Double
     var priceJetpack: Double
@@ -60,6 +62,8 @@ class MoneyClass{
         playerTrinket = "None"
         //PlayerInventory
         inventory = [""]
+        inventoryArmor = [""]
+        inventoryTrinket = [""]
         //StorePrices
         priceJump = 55.00
         priceJetpack = 500

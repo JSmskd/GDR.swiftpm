@@ -87,6 +87,8 @@ struct StorePage: View {
                                 money.gold -= 250
                                 lootboxResult = lootboxBasicWeapon.randomElement()!
                                 money.inventory.append(lootboxResult)
+                                //This comment line fixed a error for some reason, pls dont remove
+                                lootboxAlert = true
                             }else{
                                 noMoneyAlertGold = true                       }
                                   }, label: {
@@ -94,16 +96,11 @@ struct StorePage: View {
                                         .frame(maxWidth: 300, maxHeight: 200)
                                         .foregroundStyle(.brown)
                                         .overlay(
-                                            Text("\(money.priceJetpackSoldout)")
+                                            Text("Weapon Lootbox")
                                           .frame(maxWidth: 300, alignment: .center)
                                           )
                                   })
-                        
-                                    
-                                
-                        
-                        
-
+                        /////////////////////////////////////// ALERTS
             }
                     .alert("You Don't Have Enough Gold!", isPresented: $noMoneyAlertGold){
                         Button("Thats Crazy!", role: .cancel){}}

@@ -34,7 +34,7 @@ struct QuestsPage: View {
                                     money.meteor += 250
                                     questCompleteAlert = true
                                     money.jumpOverCactusQuest -= 3
-//                                    money.jumpOverCactusTotal += 3
+                                    money.achievments["Cactus Jumped Over"]? += 3
                                           }, label: {
                                               Text("Money tester (+500 gold, +250 meteor) also 3 jump")
                                                   .frame(maxWidth: 300, alignment: .leading)

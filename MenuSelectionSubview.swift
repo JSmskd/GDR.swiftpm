@@ -44,6 +44,16 @@ struct MenuSelectionSubview: View {
                     .frame(maxWidth: 200, maxHeight: 50)
                     .foregroundStyle(.black)
                     .overlay(
+                NavigationLink("Inventory"){
+                    InventoryPage(money: $money)
+                        .navigationBarBackButtonHidden(true)
+                }
+                    .foregroundStyle(.white))
+                ////////////////////////////////////////////////////////////
+                RoundedRectangle(cornerRadius: 25.0)
+                    .frame(maxWidth: 200, maxHeight: 50)
+                    .foregroundStyle(.black)
+                    .overlay(
                 NavigationLink("Quests"){
                     QuestsPage(money: $money)
                         .navigationBarBackButtonHidden(true)

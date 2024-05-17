@@ -15,8 +15,6 @@ struct StatsPage: View {
             MenuSelectionSubview(money: $money)
             Spacer()
             VStack{
-                
-                
                 Text("Stats")
                 HStack{
                     VStack{
@@ -26,7 +24,6 @@ struct StatsPage: View {
                         Text("Max Mana")
                         Text("Jump Height")
                         Text("Own Jetpack")
-                        
                     }
                     VStack{
                         Text("|")
@@ -35,14 +32,8 @@ struct StatsPage: View {
                         Text("|")
                         Text("|")
                         Text("|")
-                        
-                                    
-                                        
-                                    
                                 }
-                        
-                        
-                    }
+                    
                     VStack{
                         Text("\(money.gold, specifier: "%.0f")")
                         Text("\(money.meteor, specifier: "%.0f")")
@@ -50,13 +41,11 @@ struct StatsPage: View {
                         Text("\(money.maxMana, specifier: "%.0f")")
                         Text("\(money.jumpHeight, specifier: "%.0f")")
                         Text("\(String(money.jetpack))")
-                        
                     }
-                    
+                    }
                 }
-                
-            }
             Spacer()
+            }
             
         }
     }
