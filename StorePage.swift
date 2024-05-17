@@ -14,6 +14,9 @@ struct StorePage: View {
     @State var noMoneyAlertStock = false
     @State var commonPurchase = false
     @State var epicPurchase = false
+    @State var lootboxAlert = false
+    @State var lootboxResult = "Uh Oh"
+    @State var lootboxBasicWeapon: [String] = ["Wooden Club", "Wooden Club", "Wolfskin Hat"]
     
     ///
     @Binding var money: MoneyClass
@@ -77,12 +80,27 @@ struct StorePage: View {
                                           .frame(maxWidth: 300, alignment: .center)
                                           )
                                   })
-                        
-                                    
-                                
-                        
-                        
-
+                        //////////////////////////////////////////////////// LOOTBOX CODE = basic
+                        Button(action:
+                                {
+                            if money.gold >= 250 {
+                                money.gold -= 250
+                                lootboxResult = lootboxBasicWeapon.randomElement()!
+                                money.inventory.append(lootboxResult)
+                                //This comment line fixed a error for some reason, pls dont remove
+                                lootboxAlert = true
+                            }else{
+                                noMoneyAlertGold = true                       }
+                                  }, label: {
+                                      Rectangle()
+                                        .frame(maxWidth: 300, maxHeight: 200)
+                                        .foregroundStyle(.brown)
+                                        .overlay(
+                                            Text("Weapon Lootbox")
+                                          .frame(maxWidth: 300, alignment: .center)
+                                          )
+                                  })
+                        /////////////////////////////////////// ALERTS
             }
                     .alert("You Don't Have Enough Gold!", isPresented: $noMoneyAlertGold){
                         Button("Thats Crazy!", role: .cancel){}}
@@ -93,6 +111,8 @@ struct StorePage: View {
                     .alert("There Isn't Any Stock Left!", isPresented: $noMoneyAlertStock){
                         Button("Thats Crazy!", role: .cancel){}}
                     .alert("You Unlocked A Epic Upgrade!", isPresented: $epicPurchase){
+                        Button("Thats Crazy!", role: .cancel){}}
+                    .alert("You Opened A Lootbox! It Contained \(lootboxResult)", isPresented: $lootboxAlert){
                         Button("Thats Crazy!", role: .cancel){}}
             
             
