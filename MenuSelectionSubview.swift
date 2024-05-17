@@ -25,7 +25,7 @@ struct MenuSelectionSubview: View {
                     .foregroundStyle(.black)
                     .overlay(
                 NavigationLink("Play"){
-                    InfiniteRunnerGame()
+                    InfiniteRunnerGame(money: $money)
                         .navigationBarBackButtonHidden(true)
                 }
                     .foregroundStyle(.white))

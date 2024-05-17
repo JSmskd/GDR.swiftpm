@@ -10,30 +10,33 @@ import SwiftUI
 import SpriteKit
 
 struct InfiniteRunnerGame: View {
+    var money : Binding<MoneyClass>
     var body: some View {
         GeometryReader(content: { geometry in
-            SpriteView(scene: GameScene(size: geometry.size))
+            SpriteView(scene: GameScene(size: geometry.size,money:money))
         })
-        .onAppear(perform: {
-            binaryPos().understant( binaryPos().decode(binaryPos().encode(false, false, false, true)))
-        })
+
 
     }//
 }
 
-#Preview {
-    InfiniteRunnerGame()
-}
-
 
 class GameScene: SKScene{
+    @Environment(\.dismiss) var dismiss
+    //var money : Binding<MoneyClass>
+    //var size: CGSize
+
     let floorO:CGFloat = 32
-    let bsw:CGFloat = 25//base size width
-    let ewr:CGFloat = 1.3//width random
-    let bsh:CGFloat = 40//base size height
-    let ehr:CGFloat = 1.23//height random
+    let bsw:Float = 40//base size width
+    let ewr:Float = 20.3//width random
+    let bsh:Float = 100//base size height
+    let ehr:Float = 10.23//height random
     let enem:[SKSpriteNode] = [
-        SKSpriteNode(color: .red, size: CGSize(width: 0, height: 0))
+        //SKSpriteNode(color: .red, size: CGSize(width: 0, height: 0))
+        SKSpriteNode(imageNamed: "cact1"),
+SKSpriteNode(imageNamed: "cact1"),
+        
+SKSpriteNode(imageNamed: "cact1")
     ]
     func rando(base:CGFloat, ofs:CGFloat,_ oop:Bool?)->CGFloat{
         if oop == Optional(nil){
@@ -46,9 +49,9 @@ class GameScene: SKScene{
 var flip = SKSpriteNode(color: .blue, size: CGSize(width: 20, height: 20))//floor
     @State var st:CGFloat = 0
 
-    let hightM:CGFloat = 270
-    let jumps:CGFloat = 26
-    let fall:CGFloat = 13
+    var hightM:CGFloat = 270//height max
+    var jumps:CGFloat = 26// jump speed
+    var fall:CGFloat = 13//fall speed
 
     var sz:[String:CGFloat] = ["width":64,"height":128]
 
@@ -56,33 +59,60 @@ var flip = SKSpriteNode(color: .blue, size: CGSize(width: 20, height: 20))//floo
     @State var momentum = CGFloat(0)
         //    let sprite = SKSpriteNode(imageNamed: "foo")
     var fax:SKShapeNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 0, height: 0))
-    let foo = SKSpriteNode(imageNamed: "Rock")
-    let foo2 = SKSpriteNode(imageNamed: "Dummy1")
+    let foo = SKSpriteNode(imageNamed: "Dummy1")
+    let foo2 = SKSpriteNode(imageNamed: "Dummy2")
     let ahh = SKSpriteNode(imageNamed: "ahh")
     let data = SKSpriteNode(color: .red, size: CGSize(width: 20, height: 20))
+var money:Binding<MoneyClass>
+    init(size:CGSize, money:Binding<MoneyClass>){
+            //self.size = size
+            // call to superclass init
+        self.money = money
+        self.hightM = money.jumpHeight.wrappedValue
+        self.jumps = self.hightM / 10.3
+        self.fall = CGFloat(self.jumps / 3)
+        super.init(size: size)
+
+            // setup basic scene properties
+            // acceleration due to gravity that you want in your game
+            //self.physicsWorld.gravity = CGVectorMake(0, -9.8)
+            // set contact delegate so that this class will be notified of SKNode contacts
+            //self.physicsWorld.contactDelegate = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func sceneDidLoad() {
         self.phb.color = .red
         //phb.
-        phb.size = CGSize(width: bsw * ewr, height: bsh * ehr)
+        phb.size = ezpz(bsw, ewr, bsh, ehr)
         self.backgroundColor = .white
         self.flip.color = .blue
         self.addChild(flip)
         self.flip.position = CGPoint(x: size.width / 2, y: self.floorO / 2)
         self.flip.size = CGSize(width: size.width, height: self.floorO)
         //flip.fillColor = .blue
-            //self.fax floorO
-
+        //self.fax floorO
+        //
         self.addChild(foo)
         self.addChild(data)
         self.addChild(foo2)
-        self.addChild(enem[0])
-
+        var x = 0
+        while x < enem.count{
+            enem[x].size = ezpz(bsw, ewr, bsh, ehr)
+            enem[x].position.x = CGFloat(size.width * CGFloat(1.25 * Double(x + 1)))//
+            enem[x].position.y = CGFloat(floorO + (enem[x].position.y / 2))
+            self.addChild(enem[x])
+            x += 1    
+        }
         foo.size = CGSize(width: sz["width"]!, height: sz["height"]!) //64/48 //CGPath(rect: CGRect(x: 0, y: 0, width:foo.size.width, height:foo.size.height),transform:) //= CGSize()
         foo2.size = foo.size
 
     }
     override func didMove(to view: SKView) {
-        foo.position = CGPoint(x: size.width / 2, y: floorO + (foo.size.height / 2))
+        foo.position = CGPoint(x: size.width / 3 - (foo.size.height / 2), y: floorO + (foo.size.height / 2))
             //sprite.color = .white
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -173,46 +203,29 @@ var flip = SKSpriteNode(color: .blue, size: CGSize(width: 20, height: 20))//floo
             //print(up)
 
             //-(yy-1)
-        foo2.position = Int(currentTime * 10 / 5 * 4) % 2 == 0 ? foo.position : CGPoint(x: -1.0, y: -1.0)//this is the same line as above
+        foo2.position = Int(currentTime * 10 / 5 * 4) % 2 == 0 ? foo.position : CGPoint(x: -100.0, y: -100.0)//this is the same line as above
         var oop = false
+        
         var i = 0
+        var pint = (enem[i].size.width * 1.75)
         while i < enem.count{
-            if enem[i].position.x < 0{
-                enem[0].position = CGPoint(x: size.width, y: floorO)
-                enem[0].size = CGSize(width: rando(base: bsw, ofs: ewr, oop), height: rando(base: bsh, ofs: ehr, oop))
+            pint = (enem[i].size.width * 1.75)
+            
+//            if enem[x].position.x < foo.position.x + foo.size.width && enem[x].position.x > foo.position.x {//
+//                
+//                if 0 - foo.position.height / 2 + foo.position.y > enem[x].size.width / 2 +  enem[x].position.y {
+//                    dismiss()
+//                }
+                
+             if enem[i].position.x < 0 - pint{
+                enem[i].size = ezpz(bsw, ewr, bsh, ehr)
+                enem[i].position = CGPoint(x: (size.width + pint) * CGFloat(enem.count), y: floorO + (enem[i].size.height / 2))
                 oop.toggle()
+                money.achievments["Cactus Jumped Over"].wrappedValue! += 1
             }
-            enem[0].position.x -= 10
+            enem[i].position.x -= 10
             i += 1
         }
                                                                                                          //(self.st)
-    }
-}
-
-struct binaryPos {
-    //◽◾
-    func encode(_ grounded:Bool, _ rising:Bool, _ pressing:Bool,_ extraBit:Bool)->CGFloat  {
-        return (grounded ? 1 : 0) + (rising ? 2 : 0) + (pressing ? 4 : 0) + (extraBit ? 8 : 0)
-    }
-    func decode(_ Val:CGFloat)->[Bool]{
-var    out:[Bool]=[]
-        var x = 0
-        var y = 8
-        while x < 4{
-            if Int(Val) >= y{
-                out.append(true)
-            }
-            else {
-                out.append(true)
-            } 
-            y /= 2
-            x += 1
-        }
-        return [false]
-    }
-    func understant(_ data:[Bool]){
-        //print("\()\()\()\()")
-        //print()
-        //print()
     }
 }

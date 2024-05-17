@@ -41,7 +41,7 @@ class MoneyClass{
         //PlayerStats
         maxHealth = 1
         maxMana = 100
-        jumpHeight = 10.00
+        jumpHeight = 370.00
         jetpack = false
         pointMultiplier = 1
         goldMultiplier = 1
