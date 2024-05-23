@@ -11,10 +11,10 @@ struct QuestsPage: View {
     
     @State var questCompleteAlert = false
   
-    @Binding var money: MoneyClass
+    @ObservedObject var money: MoneyClass
     var body: some View {
         HStack{
-            MenuSelectionSubview(money: $money)
+            MenuSelectionSubview(money: money)
             
             Spacer()
             VStack{

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct InventoryPage: View {
-    @Binding var money: MoneyClass
+    @ObservedObject var money: MoneyClass
     var body: some View {
         HStack{
-            MenuSelectionSubview(money: $money)
+            MenuSelectionSubview(money: money)
             
             Spacer()
             VStack{

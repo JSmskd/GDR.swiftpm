@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct aaTitleScreen: View {
-    @Binding var money: MoneyClass
+ @ObservedObject var money: MoneyClass
     
     var body: some View {
         NavigationStack{
@@ -16,17 +16,16 @@ struct aaTitleScreen: View {
             Spacer()
             
                         VStack{
-                            RoundedRectangle(cornerRadius: 25.0)
-                                .frame(maxWidth: 400, maxHeight: 100)
-                                .foregroundStyle(.black)
-                                .overlay(
-                            NavigationLink("Start Game"){
-                                StatsPage(money: $money)
+                            NavigationLink(destination: { 
+                                StatsPage(money: money)
                                     .navigationBarBackButtonHidden(true)
-                            }
-                                .foregroundStyle(.white)
-                              
-                                )
+                            }, label: { 
+                                Text("Start Game")
+                                    .frame(maxWidth: 400, maxHeight: 100)
+                                    .background(.black)
+                                    .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                                    .foregroundStyle(.white)
+                            })
                                                 
                         }
             Spacer()

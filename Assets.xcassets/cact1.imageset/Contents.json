@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "cact1.heic",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "John",
+    "version" : 1
+  }
+}

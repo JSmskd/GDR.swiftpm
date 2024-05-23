@@ -18,8 +18,8 @@ struct StorePage: View {
     @State var lootboxResult = "Uh Oh"
     @State var lootboxBasicWeapon: [String] = ["Wooden Club", "Wooden Club", "Wolfskin Hat"]
     
-    
-    @Binding var money: MoneyClass
+    ///
+    @ObservedObject var money: MoneyClass
     var body: some View {
         Text("Store")
         HStack{
@@ -27,7 +27,7 @@ struct StorePage: View {
             Text("Meteors = \(money.meteor, specifier: "%.0f")") 
         }
         HStack{
-                    MenuSelectionSubview(money: $money)
+                    MenuSelectionSubview(money: money)
                     Spacer()
                     VStack{
                        
