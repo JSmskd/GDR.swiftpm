@@ -23,7 +23,7 @@ struct binaryPos {
         return [false]
     }
     func understant(_ data:[Bool]){
-        //print("\()\()\()\()")
+        print("\(data)")
         //print()
         //print()
     }

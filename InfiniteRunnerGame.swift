@@ -10,11 +10,31 @@ import SwiftUI
 import SpriteKit
 
 struct InfiniteRunnerGame: View {
-    var money : Binding<MoneyClass>
+    @ObservedObject var money : MoneyClass
+    @State var start = false
+@Environment(\.dismiss) var dismiss
     var body: some View {
+        
+        if start{
         GeometryReader(content: { geometry in
-            SpriteView(scene: GameScene(size: geometry.size,money:money))
+            SpriteView(scene: GameScene(size: geometry.size,money:$money))
         })
+    }
+        Rectangle()
+            .frame(width: 0,height: 0)
+        .onAppear(perform: {
+            money.ded = false
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                start = true
+                Timer.scheduledTimer(withTimeInterval: 1.0  / 60.0, repeats: true) { _ in
+                    //print(money.wrappedValue.gold)
+                    if money.ded{
+                        dismiss()
+                    }
+                }   
+            }
+        })
+        
 
 
     }//
@@ -22,7 +42,7 @@ struct InfiniteRunnerGame: View {
 
 
 class GameScene: SKScene{
-    @Environment(\.dismiss) var dismiss
+    
     //var money : Binding<MoneyClass>
     //var size: CGSize
 
@@ -33,10 +53,7 @@ class GameScene: SKScene{
     let ehr:Float = 10.23//height random
     let enem:[SKSpriteNode] = [
         //SKSpriteNode(color: .red, size: CGSize(width: 0, height: 0))
-        SKSpriteNode(imageNamed: "cact1"),
-SKSpriteNode(imageNamed: "cact1"),
-        
-SKSpriteNode(imageNamed: "cact1")
+        SKSpriteNode(imageNamed: "cact\(Int.random(in: 1...3))")
     ]
     func rando(base:CGFloat, ofs:CGFloat,_ oop:Bool?)->CGFloat{
         if oop == Optional(nil){
@@ -49,9 +66,9 @@ SKSpriteNode(imageNamed: "cact1")
 var flip = SKSpriteNode(color: .blue, size: CGSize(width: 20, height: 20))//floor
     @State var st:CGFloat = 0
 
-    var hightM:CGFloat = 270//height max
-    var jumps:CGFloat = 26// jump speed
-    var fall:CGFloat = 13//fall speed
+    var hightM:CGFloat //height max
+    var jumps:CGFloat // jump speed
+    var fall:CGFloat //fall speed
 
     var sz:[String:CGFloat] = ["width":64,"height":128]
 
@@ -63,12 +80,14 @@ var flip = SKSpriteNode(color: .blue, size: CGSize(width: 20, height: 20))//floo
     let foo2 = SKSpriteNode(imageNamed: "Dummy2")
     let ahh = SKSpriteNode(imageNamed: "ahh")
     let data = SKSpriteNode(color: .red, size: CGSize(width: 20, height: 20))
-var money:Binding<MoneyClass>
-    init(size:CGSize, money:Binding<MoneyClass>){
+    var money:ObservedObject<MoneyClass>.Wrapper
+    let HM:CGFloat = 37
+    init(size:CGSize, money:ObservedObject<MoneyClass>.Wrapper){
             //self.size = size
             // call to superclass init
+
         self.money = money
-        self.hightM = money.jumpHeight.wrappedValue
+        self.hightM = money.jumpHeight.wrappedValue * self.HM
         self.jumps = self.hightM / 10.3
         self.fall = CGFloat(self.jumps / 3)
         super.init(size: size)
@@ -103,7 +122,7 @@ var money:Binding<MoneyClass>
         while x < enem.count{
             enem[x].size = ezpz(bsw, ewr, bsh, ehr)
             enem[x].position.x = CGFloat(size.width * CGFloat(1.25 * Double(x + 1)))//
-            enem[x].position.y = CGFloat(floorO + (enem[x].position.y / 2))
+            enem[x].position.y = CGFloat(floorO + (enem[x].size.height / 2))
             self.addChild(enem[x])
             x += 1    
         }
@@ -112,16 +131,21 @@ var money:Binding<MoneyClass>
 
     }
     override func didMove(to view: SKView) {
+
         foo.position = CGPoint(x: size.width / 3 - (foo.size.height / 2), y: floorO + (foo.size.height / 2))
             //sprite.color = .white
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-        if data.position.y == 0 {
-            data.position.y = 1
+//var coyotee = CGFloat(1000)
+            if data.position.y == 0  {
+                data.position.y = 1
+            } else if foo.size.height / 2 + foo.position.y -                                     floorO < 100 + jumps /*floorO*/ {
+                data.position.y = 1
+                foo.position.y += 200 * jumps - (foo.size.height / 2 + foo.position.y )
         } else if data.position.y == 2 {
             data.position.y = 4
         }
+        print((foo.size.height / 2 + foo.position.y - floorO) < (100 + jumps))
 
             //guard let touch = touches.first else {return}
             //let location = touch.location(in: self)
@@ -147,21 +171,21 @@ var money:Binding<MoneyClass>
             //print(foo.position.x)
     }
     override func update(_ currentTime: TimeInterval) {//
-
-            //        let hightM:CGFloat = 360
-            //        let jumps:CGFloat = 36
-            //        let fall:CGFloat = 13
-            //0:grounded;1:initJump;2:falling(Ntouch);3:initJumpHeld;4:fallinf(Ytouch)
-
-            //jumping:1,3
-            //falling:2,4
-            //grounded:0
-
-            //grounded falling jumping
+        
+        //        let hightM:CGFloat = 360
+        //        let jumps:CGFloat = 36
+        //        let fall:CGFloat = 13
+        //0:grounded;1:initJump;2:falling(Ntouch);3:initJumpHeld;4:fallinf(Ytouch)
+        
+        //jumping:1,3
+        //falling:2,4
+        //grounded:0
+        
+        //grounded falling jumping
         let state:Int = Int(data.position.y == 0 ? 0 :(data.position.y == 2 || data.position.y == 4 ? 1 : (data.position.y == 1 || data.position.y == 3 ? 2 : 3)))
         //print(state)
         if state == 1 {
-            foo.position.y -= fall
+            foo.position.y -= fall * CGFloat(Int(data.position.y) == 2 ? 1 : 0.5)
             if foo.position.y < (foo.size.height / 2 + floorO) {
                 foo.position.y = (foo.size.height / 2 + floorO)
                 data.position.y = 0
@@ -173,36 +197,36 @@ var money:Binding<MoneyClass>
                 data.position.y += 1
             }
         }
-
+        
         if data.position.y == 1{
             data.position.y = 3
         } else if data.position.y == 4 || data.position.y == 2 {
-                // foo.position.y += 10
+            // foo.position.y += 10
         }
-
-            //print(data.position.y)
-
-            //        if Int(data.position.y) == 0 {
-            //            foo.position.y += CGFloat(floor(Double(Int(data.position.y)) * Double(foo.position.y)))
-            //
-            //        } else if Int(data.position.y)  == 1 {
-            //
-            //                data.position.y = foo.position.y > 360 ? 3 : 1
-            //            if foo.position.y > 360 {
-            //                print("help")
-            //            }
-            //            if Int(data.position.y)  == 1 {
-            //                foo.position.y += 10
-            //            }
-            //            }
-            //        if data.position.y == 2{
-            //            print("\(data.position.y)")
-            //        }
-            //print("data:\(data.position.y)")
-
-            //print(up)
-
-            //-(yy-1)
+        
+        //print(data.position.y)
+        
+        //        if Int(data.position.y) == 0 {
+        //            foo.position.y += CGFloat(floor(Double(Int(data.position.y)) * Double(foo.position.y)))
+        //
+        //        } else if Int(data.position.y)  == 1 {
+        //
+        //                data.position.y = foo.position.y > 360 ? 3 : 1
+        //            if foo.position.y > 360 {
+        //                print("help")
+        //            }
+        //            if Int(data.position.y)  == 1 {
+        //                foo.position.y += 10
+        //            }
+        //            }
+        //        if data.position.y == 2{
+        //            print("\(data.position.y)")
+        //        }
+        //print("data:\(data.position.y)")
+        
+        //print(up)
+        
+        //-(yy-1)
         foo2.position = Int(currentTime * 10 / 5 * 4) % 2 == 0 ? foo.position : CGPoint(x: -100.0, y: -100.0)//this is the same line as above
         var oop = false
         
@@ -211,21 +235,37 @@ var money:Binding<MoneyClass>
         while i < enem.count{
             pint = (enem[i].size.width * 1.75)
             
-//            if enem[x].position.x < foo.position.x + foo.size.width && enem[x].position.x > foo.position.x {//
-//                
-//                if 0 - foo.position.height / 2 + foo.position.y > enem[x].size.width / 2 +  enem[x].position.y {
-//                    dismiss()
-//                }
-                
-             if enem[i].position.x < 0 - pint{
+            if (foo.position.y - (foo.size.height / CGFloat(2)) < enem[i].position.y + (enem[i].size.height / CGFloat(2))) && enem[i].position.x < foo.position.x + foo.size.width && enem[i].position.x > foo.position.x {
+                money.ded.wrappedValue  =  true
+                //print("xy")
+            }
+            
+            if enem[i].position.x < 0 - pint{
                 enem[i].size = ezpz(bsw, ewr, bsh, ehr)
-                enem[i].position = CGPoint(x: (size.width + pint) * CGFloat(enem.count), y: floorO + (enem[i].size.height / 2))
+                enem[i].position = CGPoint(x: (size.width + (pint / 1.75)) * CGFloat(enem.count * 1) + CGFloat.random(in: -10...20), y: floorO + (enem[i].size.height / 2))
+                enem[i].texture = SKTexture(imageNamed: "cact\(Int.random(in: 1...3))")
+                
                 oop.toggle()
                 money.achievments["Cactus Jumped Over"].wrappedValue! += 1
+                money.cactiJumped.wrappedValue += 1
+                money.goldGained.wrappedValue += money.goldMultiplier.wrappedValue * 5
+                
+                money.gold.wrappedValue += money.goldMultiplier.wrappedValue
+
+                
             }
+            
+            //////////////
+            
             enem[i].position.x -= 10
             i += 1
         }
-                                                                                                         //(self.st)
+        //if jumped over  cacti
+        money.gold.wrappedValue  += 10
+        //print(money.wrappedValue.gold)
+        if money.ded.wrappedValue{
+            self.addChild(SKSpriteNode(color: .black, size: CGSize(width: 1000.0, height: 1000.0)))
+        }
+        //print("hi")                                                                                    //(self.st)
     }
 }

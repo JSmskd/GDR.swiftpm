@@ -5,10 +5,10 @@ struct aaMyApp: App {
     
     
     
-    @State var money = MoneyClass()
+    @StateObject var money = MoneyClass()
     var body: some Scene {
         WindowGroup {
-            aaTitleScreen(money: $money)
+            aaTitleScreen(money: money)
             
             
         }
