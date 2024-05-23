@@ -18,7 +18,7 @@ struct StorePage: View {
     @State var lootboxResult = "Uh Oh"
     @State var lootboxBasicWeapon: [String] = ["Wooden Club", "Wooden Club", "Wolfskin Hat"]
     
-    ///
+    
     @Binding var money: MoneyClass
     var body: some View {
         Text("Store")
@@ -30,6 +30,7 @@ struct StorePage: View {
                     MenuSelectionSubview(money: $money)
                     Spacer()
                     VStack{
+                       
                         Button(action:
                                 {
                             if money.gold >= money.priceJump {

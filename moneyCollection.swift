@@ -41,7 +41,9 @@ class MoneyClass{
     var defeatMonsterQuestReward: Double
     //Achievments
     var achievments: [String: Double]
+   
 
+    
 
     init() {
         //Currencies
@@ -85,3 +87,21 @@ class MoneyClass{
 //        achievments["Total Gold Obtained"]? += 1
 
 
+class weaponStats: Identifiable{
+    var weaponName: String
+    var weaponDamage: Double
+    var weaponDescription: String
+    init(weaponName: String, weaponDamage:Double, weaponDescription:String){
+        self.weaponName = ""
+        self.weaponDamage = 0.0
+        self.weaponDescription = ""
+    }
+}
+
+class weapons: Identifiable{
+    var woodenClub: weaponStats
+    
+    init(woodenClub: weaponStats) {
+        self.woodenClub = weaponStats(weaponName:"Wooden Club", weaponDamage: 1.0, weaponDescription: "Hefty, Basic Weapon")
+    }
+}
