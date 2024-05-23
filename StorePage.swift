@@ -16,7 +16,7 @@ struct StorePage: View {
     @State var epicPurchase = false
     @State var lootboxAlert = false
     @State var lootboxResult = "Uh Oh"
-    @State var lootboxBasicWeapon: [String] = ["Wooden Club", "Wooden Club", "Wolfskin Hat"]
+    @State var lootboxBasicWeapon: [String] = ["Wooden Club", "Wooden Club", "Needlethorn Club"]
     
     ///
     @ObservedObject var money: MoneyClass
