@@ -19,6 +19,7 @@ var  id = UUID()
     @Published var jumpHeight: Double
     @Published var jetpack: Bool
     @Published var kevinKishore: Bool
+    @Published var pullTheLeverKronk: Bool
     @Published var pointMultiplier: Double
     @Published var goldMultiplier: Double
     @Published var meteorBonus: Double
@@ -60,6 +61,7 @@ var  id = UUID()
         jumpHeight = 10.00
         jetpack = false
         kevinKishore = false
+        pullTheLeverKronk = false
         pointMultiplier = 1
         goldMultiplier = 1
         meteorBonus = 0
@@ -90,22 +92,47 @@ var  id = UUID()
 }
 //        achievments["Total Gold Obtained"]? += 1
 
-
+//////////////////////// formatter
 class weaponStats: Identifiable{
+    var id = UUID()
     var weaponName: String
     var weaponDamage: Double
     var weaponDescription: String
+    var armorPierce: Double?
+    var health: Double?
     init(weaponName: String, weaponDamage:Double, weaponDescription:String){
-        self.weaponName = ""
-        self.weaponDamage = 0.0
-        self.weaponDescription = ""
+        self.weaponName = weaponName
+        self.weaponDamage = weaponDamage
+        self.weaponDescription = weaponDescription
+    }
+    init(weaponName: String, weaponDamage:Double, weaponDescription:String, armorPierce: Double){
+        self.weaponName = weaponName
+        self.weaponDamage = weaponDamage
+        self.weaponDescription = weaponDescription
+        self.armorPierce = armorPierce
+    }
+    init(weaponName: String, weaponDamage:Double, weaponDescription:String, health: Double){
+        self.weaponName = weaponName
+        self.weaponDamage = weaponDamage
+        self.weaponDescription = weaponDescription
+        self.health = health
+    }
+    
+}
+/////////////////actual items in question
+class item: Identifiable{
+    var woodenClub: weaponStats?
+    var needlethornClub: weaponStats?
+    var sledgeHammer: weaponStats?
+    
+    init(woodenClub: weaponStats) {
+        self.woodenClub = weaponStats(weaponName:"Wooden Club", weaponDamage: 1.0, weaponDescription: "Basic Weapon")
+    }
+    init(needlethornClub: weaponStats){
+        self.needlethornClub = weaponStats(weaponName:"Needlethorn Club",weaponDamage: 2.0,weaponDescription: "Youch!",armorPierce: 1)
+    }
+    init(sledgeHammer: weaponStats){
+        self.needlethornClub = weaponStats(weaponName:"Sledgehammer",weaponDamage: 4.0,weaponDescription: "Bulky Hammer Increase Health",health: 4)
     }
 }
 
-class weapons: Identifiable{
-    var woodenClub: weaponStats
-    
-    init(woodenClub: weaponStats) {
-        self.woodenClub = weaponStats(weaponName:"Wooden Club", weaponDamage: 1.0, weaponDescription: "Hefty, Basic Weapon")
-    }
-}
