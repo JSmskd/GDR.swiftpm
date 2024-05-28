@@ -51,7 +51,8 @@ var  id = UUID()
     @Published var ded = true
     @Published var goldGained:Double
     @Published var cactiJumped:Double
-    
+    @Published var userName = "Player\(Int.random(in: 0...9))\(Int.random(in: 0...9))\(Int.random(in: 0...9))\(Int.random(in: 0...9))"
+
     init() {
         //Currencies
         gold = 50.00

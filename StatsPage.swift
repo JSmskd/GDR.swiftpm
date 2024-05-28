@@ -10,42 +10,42 @@ import SwiftUI
 struct StatsPage: View {
     @ObservedObject var money: MoneyClass
     var body: some View {
-        
+
         HStack{
             MenuSelectionSubview(money: money)
             Spacer()
-                VStack{
-                    Text("Stats")
-                    HStack{
-                        VStack{
-                            Text("Gold")
-                            Text("Meteors")
-                            Text("Max Health")
-                            Text("Max Mana")
-                            Text("Jump Height")
-                            Text("Own Jetpack")
-                        }
-                        VStack{
-                            Text("|")
-                            Text("|")
-                            Text("|")
-                            Text("|")
-                            Text("|")
-                            Text("|")
-                        }
-                        
-                        VStack{
-                            Text("\(money.gold, specifier: "%.0f")")
-                            Text("\(money.meteor, specifier: "%.0f")")
-                            Text("\(money.maxHealth, specifier: "%.0f")")
-                            Text("\(money.maxMana, specifier: "%.0f")")
-                            Text("\(money.jumpHeight, specifier: "%.0f")")
-                            Text("\(String(money.jetpack))")
-                        }
+            VStack{
+                Text("Stats")
+                HStack{
+                    VStack{
+                        Text("Gold")
+                        Text("Meteors")
+                        Text("Max Health")
+                        Text("Max Mana")
+                        Text("Jump Height")
+                        Text("Own Jetpack")
+                    }
+                    VStack{
+                        Text("|")
+                        Text("|")
+                        Text("|")
+                        Text("|")
+                        Text("|")
+                        Text("|")
+                    }
+
+                    VStack{
+                        Text("\(money.gold, specifier: "%.0f")")
+                        Text("\(money.meteor, specifier: "%.0f")")
+                        Text("\(money.maxHealth, specifier: "%.0f")")
+                        Text("\(money.maxMana, specifier: "%.0f")")
+                        Text("\(money.jumpHeight, specifier: "%.0f")")
+                        Text("\(String(money.jetpack))")
                     }
                 }
-                Spacer()
-            
+            }
+            Spacer()
+
             VStack{
                 Spacer()
                 Spacer()
@@ -61,21 +61,21 @@ struct StatsPage: View {
                             Text("|")
                             Text("|")
                         }
-                        
+
                         VStack{
                             Text("\(money.cactiJumped, specifier: "%.0f")")
-                         Text("\(money.goldGained, specifier: "%.0f")")
-                            
+                            Text("\(money.goldGained, specifier: "%.0f")")
+
                         }
                     }
                 }
                 Spacer()
-            Spacer()
+                Spacer()
             }
             Spacer()
-            }
-            
         }
+
     }
+}
 
 
