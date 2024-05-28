@@ -15,8 +15,8 @@ struct StorePage: View {
     @State var commonPurchase = false
     @State var epicPurchase = false
     @State var lootboxAlert = false
-    @State var lootboxResult = "Uh Oh"
-    @State var lootboxBasicWeapon: [String] = ["Wooden Club", "Wooden Club", "Needlethorn Club"]
+    @State var lootboxResult = 0
+    @State var lootboxBasicWeapon: [Int] = [0,0,2]
     
     ///
     @ObservedObject var money: MoneyClass
@@ -87,7 +87,7 @@ struct StorePage: View {
                             if money.gold >= 250 {
                                 money.gold -= 250
                                 lootboxResult = lootboxBasicWeapon.randomElement()!
-                                money.inventory.append(lootboxResult)
+                                money.inventory.append(money.itemsWeapons[lootboxResult])
                                 //This comment line fixed a error for some reason, pls dont remove
                                 lootboxAlert = true
                             }else{
@@ -113,7 +113,7 @@ struct StorePage: View {
                         Button("Thats Crazy!", role: .cancel){}}
                     .alert("You Unlocked A Epic Upgrade!", isPresented: $epicPurchase){
                         Button("Thats Crazy!", role: .cancel){}}
-                    .alert("You Opened A Lootbox! It Contained \(lootboxResult)", isPresented: $lootboxAlert){
+                    .alert("You Opened A Lootbox! It Contained \(money.itemsWeapons[lootboxResult].weaponName)", isPresented: $lootboxAlert){
                         Button("Thats Crazy!", role: .cancel){}}
             
             

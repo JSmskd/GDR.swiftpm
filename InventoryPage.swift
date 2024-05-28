@@ -18,8 +18,8 @@ struct InventoryPage: View {
                 Text("Equipment")
                 HStack{
                     VStack{
-                        Text("Equipped Weapon = \(money.playerWeapon)")
-                        ForEach(money.inventory, id:\.self){value in
+                        Text("Equipped Weapon = \(money.playerWeapon.weaponName)")
+                        ForEach(money.inventory){value in
                             Button(action: {
                                 money.playerWeapon = value
                             }, label: {
@@ -27,7 +27,7 @@ struct InventoryPage: View {
                                     .frame(maxWidth: 100, maxHeight: 100)
                                     .foregroundStyle(.brown)
                                     .overlay(
-                                        Text("\(value)")
+                                        Text("\(value.weaponName)")
                                             .foregroundStyle(.black)
                                     )
                             })}
@@ -72,4 +72,5 @@ struct InventoryPage: View {
         }
     }
 }
+
 

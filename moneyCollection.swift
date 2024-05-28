@@ -24,11 +24,11 @@ var  id = UUID()
     @Published var goldMultiplier: Double
     @Published var meteorBonus: Double
     //PlayerItems
-    @Published var playerWeapon: String
+    @Published var playerWeapon: weaponStats
     @Published var playerArmor: String
     @Published var playerTrinket: String
     //PlayerInventory
-    @Published var inventory: [String]
+    @Published var inventory: [weaponStats]
     @Published var inventoryArmor: [String]
     @Published var inventoryTrinket: [String]
     //StorePrices
@@ -44,7 +44,8 @@ var  id = UUID()
     @Published var defeatMonsterQuestReward: Double
     //Achievments
     @Published var achievments: [String: Double]
-    
+    //Items in the game
+    @Published var itemsWeapons: [weaponStats]
     //John's special corner
 
     @Published var ded = true
@@ -66,11 +67,11 @@ var  id = UUID()
         goldMultiplier = 1
         meteorBonus = 0
         //PlayerItems
-        playerWeapon = "None"
+        playerWeapon = weaponStats(weaponName: "None", weaponDamage: 0.0, weaponDescription: "Nothing But Fists And Anger")
         playerArmor = "None"
         playerTrinket = "None"
         //PlayerInventory
-        inventory = [""]
+        inventory = []
         inventoryArmor = [""]
         inventoryTrinket = [""]
         //StorePrices
@@ -86,6 +87,15 @@ var  id = UUID()
         defeatMonsterQuestReward = 1
         //Achievments
         achievments = ["Completed Quests":0, "Total Gold Obtained":50, "Total Gold Spent":0, "Total Meteor Obtained":5, "Total Meteor Spent":0, "Cactus Jumped Over":0, "Monsters Defeated":0]
+        //Items in the game
+        itemsWeapons = [
+            weaponStats(weaponName:"Wooden Club", weaponDamage: 1.0, weaponDescription: "Basic Weapon"),
+            weaponStats(weaponName:"Needlethorn Club",weaponDamage: 2.0,weaponDescription: "Youch!",armorPierce: 1),
+            weaponStats(weaponName:"Sledgehammer",weaponDamage: 4.0,weaponDescription: "Bulky Hammer Increase Health",health: 4)
+                       
+        ]
+        
+
         self.goldGained = 0
         self.cactiJumped = 0
     }
@@ -116,23 +126,6 @@ class weaponStats: Identifiable{
         self.weaponDamage = weaponDamage
         self.weaponDescription = weaponDescription
         self.health = health
-    }
-    
-}
-/////////////////actual items in question
-class item: Identifiable{
-    var woodenClub: weaponStats?
-    var needlethornClub: weaponStats?
-    var sledgeHammer: weaponStats?
-    
-    init(woodenClub: weaponStats) {
-        self.woodenClub = weaponStats(weaponName:"Wooden Club", weaponDamage: 1.0, weaponDescription: "Basic Weapon")
-    }
-    init(needlethornClub: weaponStats){
-        self.needlethornClub = weaponStats(weaponName:"Needlethorn Club",weaponDamage: 2.0,weaponDescription: "Youch!",armorPierce: 1)
-    }
-    init(sledgeHammer: weaponStats){
-        self.needlethornClub = weaponStats(weaponName:"Sledgehammer",weaponDamage: 4.0,weaponDescription: "Bulky Hammer Increase Health",health: 4)
     }
 }
 
