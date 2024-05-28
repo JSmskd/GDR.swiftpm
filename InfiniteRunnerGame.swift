@@ -242,7 +242,7 @@ var flip = SKSpriteNode(color: .blue, size: CGSize(width: 20, height: 20))//floo
             
             if enem[i].position.x < 0 - pint{
                 enem[i].size = ezpz(bsw, ewr, bsh, ehr)
-                enem[i].position = CGPoint(x: (size.width + (pint / 1.75)) * CGFloat(enem.count * 1) + CGFloat.random(in: -10...20), y: floorO + (enem[i].size.height / 2))
+                enem[i].position = CGPoint(x: (enem[i].position.x + size.width + (pint / 1.75)) * CGFloat(enem.count * 1) + CGFloat.random(in: -10...20), y: floorO + (enem[i].size.height / 2))
                 enem[i].texture = SKTexture(imageNamed: "cact\(Int.random(in: 1...3))")
                 
                 oop.toggle()
