@@ -89,7 +89,7 @@ struct StorePage: View {
                     if money.gold >= 250 {
                         money.gold -= 250
                         lootboxResult = lootboxBasicWeapon.randomElement()!
-                        //money.inventory.append(lootboxResult)
+                        money.inventory.append(lootboxResult)
                             //This comment line fixed a error for some reason, pls dont remove
                         lootboxAlert = true
                     }else{
