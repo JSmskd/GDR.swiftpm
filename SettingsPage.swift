@@ -46,15 +46,13 @@ struct SettingsPage: View {
                     .foregroundStyle(endis2.outType == 2 ? .gray : .black)
 
 
-                Button(action: {
+                Button("Submit Username") {
                     if endis {
                         money.userName = tempName
                         endis = nameCheck(firstName: money.userName, lastName: tempName).accepted
                         endis2 = nameCheck(firstName: money.userName, lastName: tempName)
                     }
-                }, label: {
-                    Text("Submit Username")
-                })
+                }
                 .frame(width: 150, height: 50)
                 .background(endis ? Color.blue : Color.gray)
                 .foregroundStyle(.white)

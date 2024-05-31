@@ -20,7 +20,8 @@ struct aaTitleScreen: View {
                                 StatsPage(money: money)
                                     .navigationBarBackButtonHidden(true)
                             }, label: { 
-                                Text("Start Game")
+                                Image(systemName: "play.rectangle.fill")
+                                    .font(.largeTitle)
                                     .frame(maxWidth: 400, maxHeight: 100)
                                     .background(.black)
                                     .clipShape(RoundedRectangle(cornerRadius: 25.0))
