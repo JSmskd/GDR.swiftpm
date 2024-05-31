@@ -16,7 +16,7 @@ struct StorePage: View {
     @State var epicPurchase = false
     @State var lootboxAlert = false
     @State var lootboxResult = 0
-    @State var lootboxBasicWeapon: [Int] = [0,0,2]
+    @State var lootboxBasicWeapon: [Int] = [0,0,0,1,2,3]
     
     ///
     @ObservedObject var money: MoneyClass

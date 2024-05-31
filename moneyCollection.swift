@@ -67,7 +67,7 @@ var  id = UUID()
         goldMultiplier = 1
         meteorBonus = 0
         //PlayerItems
-        playerWeapon = weaponStats(weaponName: "None", weaponDamage: 0.0, weaponDescription: "Nothing But Fists And Anger")
+        playerWeapon = weaponStats(weaponName: "None", weaponDamage: 0.0, weaponDescription: "Nothing But Fists And Anger", weaponSellValue: 1)
         playerArmor = "None"
         playerTrinket = "None"
         //PlayerInventory
@@ -89,9 +89,10 @@ var  id = UUID()
         achievments = ["Completed Quests":0, "Total Gold Obtained":50, "Total Gold Spent":0, "Total Meteor Obtained":5, "Total Meteor Spent":0, "Cactus Jumped Over":0, "Monsters Defeated":0]
         //Items in the game
         itemsWeapons = [
-            weaponStats(weaponName:"Wooden Club", weaponDamage: 1.0, weaponDescription: "Basic Weapon"),
-            weaponStats(weaponName:"Needlethorn Club",weaponDamage: 2.0,weaponDescription: "Youch!",armorPierce: 1),
-            weaponStats(weaponName:"Sledgehammer",weaponDamage: 4.0,weaponDescription: "Bulky Hammer Increase Health",health: 4)
+            weaponStats(weaponName:"Wooden Club", weaponDamage: 1.0, weaponDescription: "Basic Weapon", weaponSellValue: 17),
+            weaponStats(weaponName:"Needlethorn Club",weaponDamage: 2.0,weaponDescription: "Youch!", weaponSellValue: 23, armorPierce: 1),
+            weaponStats(weaponName:"Sledgehammer",weaponDamage: 4.0,weaponDescription: "Bulky Hammer Granting +4 Health",weaponSellValue: 34,health: 4),
+            weaponStats(weaponName: "Butterfly Net", weaponDamage: 1.5, weaponDescription: "A Light Net Granting +2 Jump", weaponSellValue: 31, extraJump: 2)
                        
         ]
         
@@ -108,24 +109,39 @@ class weaponStats: Identifiable{
     var weaponName: String
     var weaponDamage: Double
     var weaponDescription: String
+    var weaponSellValue: Double
+    // change the above to an optional LATER
     var armorPierce: Double?
     var health: Double?
-    init(weaponName: String, weaponDamage:Double, weaponDescription:String){
+    var extraJump: Double?
+    init(weaponName: String, weaponDamage:Double, weaponDescription:String, weaponSellValue: Double){
         self.weaponName = weaponName
         self.weaponDamage = weaponDamage
         self.weaponDescription = weaponDescription
+        self.weaponSellValue = weaponSellValue
     }
-    init(weaponName: String, weaponDamage:Double, weaponDescription:String, armorPierce: Double){
+    init(weaponName: String, weaponDamage:Double, weaponDescription:String, weaponSellValue: Double, armorPierce: Double){
         self.weaponName = weaponName
         self.weaponDamage = weaponDamage
         self.weaponDescription = weaponDescription
+        self.weaponSellValue = weaponSellValue
         self.armorPierce = armorPierce
     }
-    init(weaponName: String, weaponDamage:Double, weaponDescription:String, health: Double){
+    init(weaponName: String, weaponDamage:Double, weaponDescription:String, weaponSellValue: Double, health: Double){
         self.weaponName = weaponName
         self.weaponDamage = weaponDamage
         self.weaponDescription = weaponDescription
+        self.weaponSellValue = weaponSellValue
         self.health = health
     }
+    init(weaponName: String, weaponDamage: Double, weaponDescription:String, weaponSellValue: Double, extraJump: Double){
+        self.weaponName = weaponName
+        self.weaponDamage = weaponDamage
+        self.weaponDescription = weaponDescription
+        self.weaponSellValue = weaponSellValue
+        self.extraJump = extraJump
+        
+    }
+    
 }
 
